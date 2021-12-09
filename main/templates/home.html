@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Home Page</title>
+{% endblock title %}
+
+{% block body %}
+
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+	<strong>!</strong> {{message}}
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+  </div>
+{% endfor %}
+
+{% load static %}
+<div class="container my-3">
+    <img src="{% static 'img/travel11.jpg' %}" style='width:100%;height:500px;'>
+    
+ <div class="row mb-2 my-3 mx-1">
+ {% for b in blog %}
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative mx-">
+        <div class="col p-4 d-flex flex-column position-static mx-1">
+          <strong class="d-inline-block mb-2 text-primary">Post</strong>
+          <h3 class="mb-0">{{b.tittle}}</h3>
+          <div class="mb-1 text-muted">{{b.date}}</div>
+          <b>by: {{b.user_id.username}}</b>
+          <p class="card-text mb-auto">{{b.dsc}}</p>
+          <a href="/pdetails/{{b.id}}" class="stretched-link btn btn-success">Continue Reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          
+          <img src="{{b.Img.url}}" width="200" height="250" style="margin-top: 20px; margin-bottom: 20px;"/>
+        
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+
+{% endblock body %}

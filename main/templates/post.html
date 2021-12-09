@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Post page</title>
+{% endblock title %}
+
+{% block body%}
+
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+	<strong>Message</strong> {{message}}
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+  </div>
+{% endfor %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'p.css' %}">
+
+
+
+<div class="container contact">
+	<div class="row">
+		<div class="col-md-3">
+            <h2 class="center"> Create New Post </h2>
+			
+		</div>
+		<div class="col-md-9">
+			<div class="contact-form">
+				<form method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="form-group">
+						<label class="control-label col-sm-2">Post Tittle</label>
+						<div class="col-sm-10">          
+						  <input type="text" class="form-control"  placeholder="Tittle" name="tittle">
+						</div>
+					  </div>
+					  
+					  <div class="form-group">
+						<label class="control-label col-sm-2" placeholder="Description" for="comment">Description</label>
+						<div class="col-sm-10">
+						  <textarea class="form-control" rows="5" name="dsc"></textarea>
+						</div>
+					  </div>
+					  <div class="form-group">
+						<label class="control-label col-sm-4 ">Choose an Image</label>
+						<input type='file' name='image'></input>
+					  </div>
+					  <div class="form-group">        
+						<div class="col-sm-offset-2 col-sm-10">
+						  <button type="submit" class="btn btn-default">Publish</button>
+						</div>
+					  </div>
+				</form>
+			
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock body %}
